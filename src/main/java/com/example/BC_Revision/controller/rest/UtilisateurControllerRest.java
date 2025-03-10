@@ -27,16 +27,16 @@ import java.util.Optional;
 @RequestMapping("api/utilisateurs")
 public class UtilisateurControllerRest {
     private UtilisateurService utilisateurService;
-    private AuthenticationManager authenticationManager;
+    //private AuthenticationManager authenticationManager;
     private TokenService tokenService;
     private PasswordEncoder passwordEncoder;
 
     public UtilisateurControllerRest(UtilisateurService utilisateurService, TokenService tokenService,
-                                     PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager){
+                                     PasswordEncoder passwordEncoder/*, AuthenticationManager authenticationManager*/){
         this.utilisateurService = utilisateurService;
         this.tokenService = tokenService;
         this.passwordEncoder = passwordEncoder;
-        this.authenticationManager = authenticationManager;
+        //this.authenticationManager = authenticationManager;
 
     }
 
@@ -81,7 +81,7 @@ public class UtilisateurControllerRest {
         return utilisateurService.saveUtilisateur(utilisateurDto);
     }
 
-    @PostMapping("/login")
+    /*@PostMapping("/login")
     public ResponseEntity<String> mlogin(@RequestBody LoginRequest loginRequest){
         // try catch permet de gérer l'erreur
         try {
@@ -97,7 +97,7 @@ public class UtilisateurControllerRest {
         } catch (BadCredentialsException ex){
             return  ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-    }
+    }*/
 
     //@ExceptionHandler(BorneInexistanteException.class)
 //        @ResponseStatus(code=HttpStatus.NOT_FOUND)

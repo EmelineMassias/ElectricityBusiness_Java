@@ -17,6 +17,11 @@ public interface LieuMapper {
     @Mapping(target = "bornesId", source="bornes")
     LieuDto toDto(Lieu lieu);
     Lieu toEntity(LieuDto lieuDto);
+    List<Long> map(List<Borne> bornes);
+
+    default Long map(Borne borne){
+        return borne != null ? borne.getId() : null;
+    }
 
 
 }

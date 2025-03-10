@@ -29,8 +29,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableMethodSecurity(jsr250Enabled = true)
 public class SecurityConfig {
 
-    @Autowired
-    private JWTTokenFilter jwtTokenFilter;
+    //@Autowired
+    //private JWTTokenFilter jwtTokenFilter;
 
 
 
@@ -41,14 +41,10 @@ public class SecurityConfig {
                 .headers(headers -> headers.frameOptions(frame -> frame.disable()))
                 .authorizeHttpRequests(
                         request -> request
-                                .requestMatchers("/actuator/**").permitAll()
-                                .requestMatchers("/utilisateurs/login").permitAll()
-                                //.requestMatchers("/private").hasAnyRole("USER", "ADMIN")
-                                //.requestMatchers("/user").hasRole("ADMIN")
-                                .anyRequest().authenticated())
+                                .requestMatchers("/**").permitAll())
                 //.oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
                 //.httpBasic(Customizer.withDefaults())
-                .addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class)
+                //.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class)
                 // param 1 le filtre, param 2 celui qui succède le filtre
                 .build();
     }
@@ -58,7 +54,7 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
+    /*@Bean
     public AuthenticationManager authenticationManager(
             HttpSecurity http,
             PasswordEncoder encoder,
@@ -68,6 +64,7 @@ public class SecurityConfig {
                 .userDetailsService(userDetailsService)
                 .passwordEncoder(encoder)
                 .and().build();
-    }
+    }*/
+
 }
 
