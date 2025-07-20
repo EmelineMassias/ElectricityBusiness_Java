@@ -16,6 +16,10 @@ public interface UtilisateurService {
 
     UtilisateurDto getUtilisateurById(Long id);
 
+    Utilisateur updateUtilisateur(UtilisateurDto utilisateurDto);
+
     void deleteUtilisateur(Long id);
+
+    UtilisateurDto getUtilisateurByEmail(String email);
 
 }

@@ -4,7 +4,9 @@ import com.example.BC_Revision.dto.*;
 import com.example.BC_Revision.model.*;
 import com.example.BC_Revision.repository.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -20,24 +22,28 @@ public class data implements CommandLineRunner {
     private final ReservationRepository reservationRepository;
     private final MediaRepository mediaRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 
-    @Override
+
     public void run(String... args) throws Exception {
+        if(utilisateurRepository.findAll().isEmpty()) {
         Utilisateur u1 = new Utilisateur();
         u1.setNom("Rouve");
         u1.setPrenom("Jean-Paul");
         u1.setUsername("JP");
         u1.setRole("admin");
         u1.setEmail("jprouve@test.fr");
-        u1.setMotDePasse("testdsfsdfd");
+        u1.setMotDePasse(passwordEncoder.encode("password"));
         u1.setDateDeNaissance(LocalDate.now().minusYears(20));
         u1.setNumeroRue(2);
         u1.setNomRue("rue des robins des bois");
         u1.setCodePostal("63100");
+        u1.setPhotoProfil("images.jpg");
         u1.setVille("Clermont-Ferrand");
         u1.setTelephone("+33 0601020304");
-
+    
 
         Lieu l1 = new Lieu();
         l1.setNomRue("rue Aristide Briand");
@@ -80,4 +86,5 @@ public class data implements CommandLineRunner {
         reservationRepository.save(r1);
         mediaRepository.save(m1);
     }
+ }
 }

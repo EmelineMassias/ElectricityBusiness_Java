@@ -50,6 +50,8 @@ public class Utilisateur {
 
     private String ville;
 
+    private String photoProfil;
+
     @OneToMany(mappedBy = "utilisateur")
     private List<Borne> bornes;
 
@@ -168,6 +170,14 @@ public class Utilisateur {
         this.ville = ville;
     }
 
+    public String getPhotoProfil() {
+        return photoProfil;
+    }
+
+    public void setPhotoProfil(String photoProfil) {
+        this.photoProfil = photoProfil;
+    }
+
     public List<Borne> getBornes() {
         return bornes;
     }
@@ -193,6 +203,7 @@ public class Utilisateur {
                 ", nomRue='" + nomRue + '\'' +
                 ", codePostal='" + codePostal + '\'' +
                 ", ville='" + ville + '\'' +
+                ", photoProfil='" + photoProfil + '\'' +
                 ", bornes=" + bornes +
                 ", reservations=" + reservations +
                 '}';

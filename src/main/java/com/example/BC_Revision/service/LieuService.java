@@ -16,5 +16,5 @@ public interface LieuService {
 
     void deleteLieu(Long id);
 
-
+    List<String> getAllVilles();
 }

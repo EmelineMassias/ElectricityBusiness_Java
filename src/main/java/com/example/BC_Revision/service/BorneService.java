@@ -1,6 +1,7 @@
 package com.example.BC_Revision.service;
 
 import com.example.BC_Revision.dto.BorneDto;
+import com.example.BC_Revision.dto.BorneSearchCriteriaDto;
 import com.example.BC_Revision.model.Borne;
 
 
@@ -17,5 +18,7 @@ public interface BorneService {
 
     void deleteBorne(Long id);
 
+    List<BorneDto> getBornesByUtilisateurEmail(String email);
 
+    List<BorneDto> searchBornes(BorneSearchCriteriaDto criteria);
 }

@@ -66,8 +66,8 @@ public class JWTTokenFilter extends OncePerRequestFilter {
         // (donc créer un objet authentication, et met le dans le contexte de sécurité)
         // donc il faut extraire du token le username
 
-        String username = tokenService.extractUsernameFromToken(extractedToken);
-        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+        String email = tokenService.extractUsernameFromToken(extractedToken);
+        UserDetails userDetails = userDetailsService.loadUserByUsername(email);
 
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
                 userDetails, null, userDetails.getAuthorities());

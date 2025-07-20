@@ -6,6 +6,7 @@ import com.example.BC_Revision.model.Lieu;
 import com.example.BC_Revision.service.LieuService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -35,6 +36,12 @@ public class LieuControllerRest {
     public LieuDto getLieuById(@PathVariable Long id) {
 
         return lieuService.getLieuById(id);
+    }
+
+    //Méthode Get #3 récupérer toutes les villes
+    @GetMapping("/villes") // <-- NEW ENDPOINT
+    public ResponseEntity<List<String>> getAllVilles() {
+        return ResponseEntity.ok(lieuService.getAllVilles()); // This method needs to be added to LieuService interface and Impl
     }
 
     //Méthode Post

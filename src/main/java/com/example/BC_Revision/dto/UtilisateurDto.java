@@ -26,6 +26,7 @@ public class UtilisateurDto implements Serializable {
     String nomRue;
     String codePostal;
     String ville;
+    String photoProfil;
     private List<Long> bornesId;
     private List<Long> reservationsId;
 

@@ -20,15 +20,16 @@ public class LieuServiceImpl implements LieuService {
     @Autowired
 
     private LieuMapper lieuMapper;
-    private LieuDto lieuDto;
     private LieuRepository lieuRepository;
-
     private BorneRepository borneRepository;
 
-    public LieuServiceImpl( LieuRepository lieuRepository, BorneRepository borneRepository
+    public LieuServiceImpl( LieuRepository lieuRepository,
+                            BorneRepository borneRepository,
+                            LieuMapper lieuMapper
                             ){
         this.lieuRepository = lieuRepository;
         this.borneRepository = borneRepository;
+        this.lieuMapper = lieuMapper;
     }
 
     @Override
@@ -61,4 +62,12 @@ public class LieuServiceImpl implements LieuService {
 
     }
 
+    @Override
+    public List<String> getAllVilles() { // <-- NEW METHOD IMPLEMENTATION
+        return lieuRepository.findAll().stream()
+                .map(Lieu::getVille) // Assuming Lieu entity has a getVille() method
+                .distinct() // Get unique city names
+                .sorted()   // Sort them alphabetically
+                .collect(Collectors.toList());
+    }
 }

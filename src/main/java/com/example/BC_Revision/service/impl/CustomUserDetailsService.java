@@ -24,14 +24,14 @@ public class CustomUserDetailsService implements UserDetailsService {
 	}
 	
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		
-		Optional<Utilisateur> userResult = utilisateurRepository.findByUsername(username);
+		Optional<Utilisateur> userResult = utilisateurRepository.findByEmail(email);
 		if(userResult.isEmpty()) {
-			throw new UsernameNotFoundException(username + " not found.");
+			throw new UsernameNotFoundException(email + " not found.");
 		}
 		Utilisateur user = userResult.get();
-		return new User(user.getUsername(), user.getMotDePasse(), getRoles(user.getRole()));
+		return new User(user.getEmail(), user.getMotDePasse(), getRoles(user.getRole()));
 	}
 	
 	private List<GrantedAuthority> getRoles(String role) {
